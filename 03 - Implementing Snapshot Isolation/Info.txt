@@ -1,0 +1,25 @@
+Snapshot Isolation
+
+- The SQL Server Database Engine mantains versions of each row that is modified
+- The chance that a read operation will block other transactions is greatly reduced
+- SQL Server uses a copy-on-write mechanism when a row is modified or deleted
+- tempdb is used to hold the version store
+
+Locking vs Row Versioning
+
+Locking (pessimistic) | Row versioning (optimistic)
+
+Read uncommitted        Read committed snapshot Isolation
+Read committed          Snapshot isolation level
+Repeatable read
+Serializable
+
+ANSI SQL-92 compliant   Propietary
+
+Better for              Better for read-heavy operations
+long-running updates    
+
+Normal tempdb usage     Extra usage of tempdb (version store)
+
+More blocking = less    Less blocking = greater concurrency
+concurrency

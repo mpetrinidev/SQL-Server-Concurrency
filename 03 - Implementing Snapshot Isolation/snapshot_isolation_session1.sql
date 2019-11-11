@@ -1,0 +1,16 @@
+USE Test;
+GO
+
+SET TRANSACTION ISOLATION LEVEL SNAPSHOT;
+SET LOCK_TIMEOUT 15000;
+
+BEGIN TRAN;
+
+    UPDATE TestSavePoints
+    SET ConstantValue = 3.14
+    where ConstantName = 'pi'
+
+    WAITFOR DELAY '00:00:10';
+COMMIT;
+
+SELECT * FROM TestSavePoints

@@ -1,0 +1,18 @@
+USE Test;
+GO
+
+--ENABLE RCSI
+ALTER DATABASE Test SET READ_COMMITTED_SNAPSHOT ON;
+GO
+
+--SHOW SNAPSHOT SETTINGS
+SELECT DB_NAME(database_id), 
+    is_read_committed_snapshot_on,
+    snapshot_isolation_state_desc
+
+FROM SYS.databases
+WHERE database_id = DB_ID();
+
+-- PERMIT SNAPSHOT ISOLATION
+ALTER DATABASE Test SET ALLOW_SNAPSHOT_ISOLATION ON;
+GO
